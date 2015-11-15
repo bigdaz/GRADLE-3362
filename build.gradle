@@ -1,0 +1,14 @@
+println "Gradle version: ${GradleVersion.current().version}"
+
+configurations {
+    deps
+}
+
+dependencies {
+	deps project(path: ":jars", configuration: 'libs')
+}
+
+task printDeps << {
+    configurations.deps.each { print "| ${it.name} " }
+		println()
+}

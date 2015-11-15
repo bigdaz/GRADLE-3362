@@ -1,0 +1,28 @@
+apply plugin: 'base'
+
+configurations {
+    libs
+}
+
+version = 'latest'
+
+task apiJar(type: Jar) {
+	description = 'api jar'
+
+	// Using archiveName means we don't get both artifacts resolved in Gradle >= 2.5
+	archiveName "ka-api-latest.jar"
+
+	// Using baseName works in all versions of Gradle
+	//baseName = 'ka-api'
+}
+
+task coreJar(type: Jar) {
+	description = 'implementation jar'
+	archiveName "ka-core-latest.jar"
+	//baseName = 'ka-core'
+}
+
+artifacts {
+	libs apiJar
+	libs coreJar
+}
